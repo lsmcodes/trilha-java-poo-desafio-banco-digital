@@ -4,9 +4,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.github.lsmcodes.banco_digital.model.acao.Acao;
 import io.github.lsmcodes.banco_digital.model.cliente.Cliente;
 import io.github.lsmcodes.banco_digital.model.conta.Conta;
+import io.github.lsmcodes.banco_digital.model.transacao.Transacao;
 import lombok.Getter;
 
 @Getter
@@ -14,7 +14,7 @@ public abstract class ContaImpl implements Conta {
 
         private final static int AGENCIA_PADRAO = 1;
         private static int SEQUENCIAL = 1;
-        private List<Acao> historico = new ArrayList<>();
+        private List<Transacao> historico = new ArrayList<>();
 
         protected Cliente cliente;
         protected int agencia;
@@ -31,7 +31,7 @@ public abstract class ContaImpl implements Conta {
         public void sacar(double valor) {
                 if (saldo >= valor) {
                         saldo -= valor;
-                        adicionarAcaoAoHistorico("SAQU", valor);
+                        adicionarTransacaoAoHistorico("SAQU", valor);
                 } else {
                         System.out.println("Não há saldo suficiente para o saque.");
                 }
@@ -40,7 +40,7 @@ public abstract class ContaImpl implements Conta {
         @Override
         public void depositar(double valor) {
                 saldo += valor;
-                adicionarAcaoAoHistorico("DEPO", valor);
+                adicionarTransacaoAoHistorico("DEPO", valor);
         }
 
         @Override
@@ -48,15 +48,15 @@ public abstract class ContaImpl implements Conta {
                 if (saldo >= valor) {
                         this.sacar(valor);
                         contaDestino.depositar(valor);
-                        adicionarAcaoAoHistorico("TRAN", valor);
+                        adicionarTransacaoAoHistorico("TRAN", valor);
                 } else {
                         System.out.println("Não há saldo suficiente para a transferência.");
                 }
         }
 
-        public void adicionarAcaoAoHistorico(String acao, double valor) {
-                Acao novaAcao = new Acao(acao, valor);
-                historico.add(novaAcao);
+        public void adicionarTransacaoAoHistorico(String acao, double valor) {
+                Transacao novaTransacao = new Transacao(acao, valor);
+                historico.add(novaTransacao);
         }
 
         public void exibirInformacoes() {
@@ -65,9 +65,10 @@ public abstract class ContaImpl implements Conta {
 
                 System.out.println("DATA             HISTÓRICO    VALOR");
 
-                for (Acao acao : historico) {
+                for (Transacao transacao : historico) {
                         System.out.println(
-                                        acao.getData() + "       " + acao.getAcao() + "         R$" + acao.getValor());
+                                        transacao.getData() + "       " + transacao.getAcao() + "         R$"
+                                                        + transacao.getValor());
                 }
                 System.out.println("-------------------------------------------");
                 System.out.println("SALDO:                        R$" + saldo);
