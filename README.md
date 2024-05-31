@@ -6,7 +6,7 @@ www.dio.me
 - [Lab Banco Digital](https://github.com/falvojr/lab-banco-digital-oo)
 
 ## Desafio de Projeto
-Considerando o seu conhecimento no domínio bancário e e no domínio de Programação Orientada a Objetos, abstraia um banco com Java ao longo das aulas. Como desafio, evolua o projeto da forma que preferir.
+Considerando o seu conhecimento no domínio bancário e e no domínio de Programação Orientada a Objetos, abstraia um banco com Java ao longo das aulas. Como desafio, evolua o projeto da forma que preferir e adicione o Lombok como dependência para diminuir a verbosidade do código.
 
 ## Contexto
 Um banco oferece aos seus clientes dois tipos de contas (`corrente` e `poupança`), as quais possuem as funcionalidades de `depósito`, `saque` e `transferência` (entre contas da própria instituição).
