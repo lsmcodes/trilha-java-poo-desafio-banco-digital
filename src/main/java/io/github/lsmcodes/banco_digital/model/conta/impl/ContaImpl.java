@@ -7,7 +7,9 @@ import java.util.List;
 import io.github.lsmcodes.banco_digital.model.acao.Acao;
 import io.github.lsmcodes.banco_digital.model.cliente.Cliente;
 import io.github.lsmcodes.banco_digital.model.conta.Conta;
+import lombok.Getter;
 
+@Getter
 public abstract class ContaImpl implements Conta {
 
         private final static int AGENCIA_PADRAO = 1;
@@ -23,24 +25,6 @@ public abstract class ContaImpl implements Conta {
                 this.cliente = cliente;
                 this.agencia = AGENCIA_PADRAO;
                 this.numero = SEQUENCIAL++;
-        }
-
-        @Override
-        public Cliente getCliente() {
-                return cliente;
-        }
-
-        public int getAgencia() {
-                return agencia;
-        }
-
-        @Override
-        public int getNumero() {
-                return numero;
-        }
-
-        public double getSalto() {
-                return saldo;
         }
 
         @Override

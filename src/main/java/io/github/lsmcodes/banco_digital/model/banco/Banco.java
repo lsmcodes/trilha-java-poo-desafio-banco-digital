@@ -8,7 +8,11 @@ import io.github.lsmcodes.banco_digital.model.cliente.Cliente;
 import io.github.lsmcodes.banco_digital.model.conta.Conta;
 import io.github.lsmcodes.banco_digital.model.conta.impl.ContaCorrente;
 import io.github.lsmcodes.banco_digital.model.conta.impl.ContaPoupanca;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class Banco {
 
         private String nome;
@@ -18,18 +22,6 @@ public class Banco {
 
         public Banco() {
                 this.contas = new ArrayList<>();
-        }
-
-        public String getNome() {
-                return nome;
-        }
-
-        public List<Conta> getContas() {
-                return contas;
-        }
-
-        public void setNome(String nome) {
-                this.nome = nome;
         }
 
         public Conta encontrarConta() {
