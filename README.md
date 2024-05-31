@@ -6,13 +6,15 @@ www.dio.me
 - [Lab Banco Digital](https://github.com/falvojr/lab-banco-digital-oo)
 
 ## Desafio de Projeto
-Considerando o seu conhecimento no domínio bancário e e no domínio de Programação Orientada a Objetos, abstraia um banco com Java.
+Considerando o seu conhecimento no domínio bancário e e no domínio de Programação Orientada a Objetos, abstraia um banco com Java ao longo das aulas. Como desafio, evolua o projeto da forma que preferir.
 
 ## Contexto
 Um banco oferece aos seus clientes dois tipos de contas (`corrente` e `poupança`), as quais possuem as funcionalidades de `depósito`, `saque` e `transferência` (entre contas da própria instituição).
 
 ## Abstração
-`Abstração` é o processo de esconder detalhes irrelevantes de implementação, de forma a evidenciar ao usuário apenas o que é essencial. A abstração pode ser alcançada em Java por meio de `classes abstratas` e `interfaces`.
+`Abstração` é primeiramente o processo de abstrair objetos do mundo real para modelar classes que capturam os atributos e comportamentos essenciais desses objetos.
+
+Em segundo lugar, abstração também é o processo de esconder detalhes irrelevantes de implementação, de forma a evidenciar ao usuário apenas o que é essencial. Isso pode ser alcançado em Java por meio de `classes abstratas` e `interfaces`.
 
 - `Classe abstrata`: é uma classe restrita que não não pode ser utilizada para criar objetos (para ser acessada deve ser herdada por uma subclasse);
 
@@ -20,7 +22,7 @@ Um banco oferece aos seus clientes dois tipos de contas (`corrente` e `poupança
 ```java
 // Classe abstrata
 abstract class Animal {
-  // Método abstrato (não contém corpo)
+  // Método abstrato (não possui corpo)
   public abstract void fazerSom();
   // Método normal
   public void dormir() {
@@ -41,10 +43,13 @@ interface Animal {
 
 
 ## Encapsulamento
-`Encapsulamento` consiste em limitar o acesso a informações "sensíveis" de uma classe, tornando-as privadas e permitindo que sejam acessadas e modificadas apenas por meio dos métodos públicos `Get` e `Set`.
+`Encapsulamento` consiste em limitar o acesso a dados internos de uma classe (atributos e métodos) para prevenir acesso não autorizado. Para encapsular dados existem modificadores de acesso como o `private`, que torna os atributos e métodos acessíveis apenas à sua própria classe.
+
+Para permitir que atributos possam ser acessados por outras classes, os métodos `Get` e `Set` são utilizados.
 ```java
 public class Pessoa {
-  private String nome; // private = acesso restrito
+  // Atributo de acesso restrito
+  private String nome;
   // Getter
   public String getNome() {
     return nome;
@@ -53,6 +58,10 @@ public class Pessoa {
   public void setNome(String novoNome) {
     this.nome = novoNome;
   }
+  // Método de acesso restrito
+  private String normalizarNome() {
+    return nome.trim().replaceAll("\\s+","").toUpperCase();
+  }
 }
 ```
 
@@ -60,16 +69,19 @@ public class Pessoa {
 `Herança` é a capacidade de uma classe (`subclasse` ou classe filha) herdar atributos e métodos de uma outra classe (`superclasse`, classe pai ou classe base), o que dispensa a repetição do código.
 ```java
 class Veiculo {
-  protected String marca = "Ford"; // Atributo do Veiculo
-  public void buzinar() { // Método do Veiculo
+  // Atributo do Veiculo
+  protected String marca = "Ford";
+  // Método do Veiculo
+  public void buzinar() {
     System.out.println("Tuut, tuut!");
   }
 }
 
 class Carro extends Veiculo {
-  private String modelo = "Mustang"; // Atributo de Carro
+  // Atributo de Carro
+  private String modelo = "Mustang";
   public static void main(String[] args) {
-    // Cria um objeto mewCarro
+    // Cria um objeto meuCarro
     Carro meuCarro = new Carro();
     // Invoca método da superclasse por meio da instância meuCarro da subclasse
     meuCarro.buzinar();
@@ -79,7 +91,7 @@ class Carro extends Veiculo {
 ```
 
 ## Polimorfismo
-"`Polimorfismo`" significa "muitas formas" e ocorre quando subclasses herdam um método e o implementam de forma distinta, o que faz com que o `mesmo método` desempenhe `funções diferentes` em classes diferentes.
+`"Polimorfismo"` significa "muitas formas" e ocorre quando subclasses herdam um método e o implementam de forma distinta, o que faz com que o `mesmo método` desempenhe `funções diferentes` em classes diferentes.
 ```java
 class Animal {
   public void fazerSom() {
@@ -94,7 +106,7 @@ class Porco extends Animal {
 }
 
 class Cachorro extends Animal {
-  public void animalSound() {
+  public void fazerSom() {
     System.out.println("O cachorro late");
   }
 }
@@ -105,4 +117,4 @@ class Cachorro extends Animal {
 - Java Abstraction - https://www.w3schools.com/java/java_abstract.asp
 - Java Encapsulation - https://www.w3schools.com/java/java_encapsulation.asp
 - Java Inheritance - https://www.w3schools.com/java/java_inheritance.asp
-- Java Polymosphism - https://www.w3schools.com/java/java_polymorphism.asp
+- Java Polymorphism - https://www.w3schools.com/java/java_polymorphism.asp
